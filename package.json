@@ -1,0 +1,17 @@
+{
+  "scripts": {
+    "build": "rimraf ./build && tsc",
+    "import:bonPION": "node build/importBonPIONs.js",
+    "import:nodeManager": "node build/importNodes.js",
+    "import:exitNodes": "node build/importDeactivatedNodes.js",
+    "import:staking": "node build/importStakes.js"
+  },
+  "devDependencies": {
+    "typescript": "^5.2.2",
+    "web3": "^4.2.2"
+  },
+  "dependencies": {
+    "csv": "^6.3.5",
+    "dotenv": "^16.3.1"
+  }
+}
