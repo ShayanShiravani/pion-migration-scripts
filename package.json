@@ -4,7 +4,8 @@
     "import:bonPION": "node build/importBonPIONs.js",
     "import:nodeManager": "node build/importNodes.js",
     "import:exitNodes": "node build/importDeactivatedNodes.js",
-    "import:staking": "node build/importStakes.js"
+    "import:staking": "node build/importStakes.js",
+    "import:rewardManager": "node build/importRewards.js"
   },
   "devDependencies": {
     "typescript": "^5.2.2",
