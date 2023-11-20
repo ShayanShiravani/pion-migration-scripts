@@ -5,7 +5,8 @@
     "import:nodeManager": "node build/importNodes.js",
     "import:exitNodes": "node build/importDeactivatedNodes.js",
     "import:staking": "node build/importStakes.js",
-    "import:rewardManager": "node build/importRewards.js"
+    "import:rewardManager": "node build/importRewards.js",
+    "import:pions": "node build/importPIONs.js"
   },
   "devDependencies": {
     "typescript": "^5.2.2",
