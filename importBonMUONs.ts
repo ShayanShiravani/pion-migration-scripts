@@ -39,11 +39,13 @@ const main = async () => {
   let balances: Array<string> = []
   let mintedAts: Array<string> = []
 
-  records.map((row: Array<string>) => {
-    tokenIds.push(row[0])
-    owners.push(row[1])
-    balances.push(row[2])
-    mintedAts.push(row[3])
+  const now = Date.now()/1000
+
+  records.map((row: Array<string>, i: number) => {
+    tokenIds.push(`${++i}`)
+    owners.push(row[0])
+    balances.push(row[1])
+    mintedAts.push(now.toString())
   })
 
 

@@ -46,12 +46,12 @@ const main = async () => {
   records.map((row: Array<string>) => {
     users.push(row[0])
     balances.push(row[1])
-    paidRewards.push(row[2])
-    paidRewardPerTokens.push(row[3])
-    pendingRewards.push(row[4])
-    tokenIds.push(row[5])
-    nodeAddresses.push(row[6])
-    peerIds.push(row[7])
+    paidRewards.push("0")
+    paidRewardPerTokens.push("0")
+    pendingRewards.push("0")
+    tokenIds.push(row[2])
+    nodeAddresses.push(row[3])
+    peerIds.push(row[4])
   })
 
   const contract = new web3.eth.Contract(abi, contractAddr)
