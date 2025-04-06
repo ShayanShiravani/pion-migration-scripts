@@ -1,12 +1,8 @@
 {
   "scripts": {
-    "build": "rimraf ./build && tsc",
-    "import:bonPION": "node build/importBonPIONs.js",
-    "import:nodeManager": "node build/importNodes.js",
-    "import:exitNodes": "node build/importDeactivatedNodes.js",
-    "import:staking": "node build/importStakes.js",
-    "import:rewardManager": "node build/importRewards.js",
-    "import:pions": "node build/importPIONs.js"
+    "import:bonMUONs": "node importBonMUONs.js",
+    "import:nodes": "node importNodes.js",
+    "import:stakings": "node importStakes.js"
   },
   "devDependencies": {
     "rimraf": "^5.0.5",
@@ -16,5 +12,6 @@
   "dependencies": {
     "csv": "^6.3.5",
     "dotenv": "^16.3.1"
-  }
+  },
+  "type": "module"
 }
