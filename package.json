@@ -2,7 +2,8 @@
   "scripts": {
     "import:bonMUONs": "node importBonMUONs.js",
     "import:nodes": "node importNodes.js",
-    "import:stakings": "node importStakes.js"
+    "import:stakings": "node importStakes.js",
+    "import:delegations": "node importDelegators.js"
   },
   "devDependencies": {
     "rimraf": "^5.0.5",
