@@ -1,5 +1,5 @@
 import Web3 from 'web3';
-import ABI from './abis/MuonNodeStaking.json' assert { type: "json" };
+import ABI from './abis/MuonNodeStaking.json' with { type: "json" };
 import 'dotenv/config';
 
 const RPC_URL = "https://endpoints.omniatech.io/v1/avax/mainnet/public"
@@ -27,6 +27,8 @@ const main = async () => {
   const contract = new web3.eth.Contract(ABI.abi, contractAddr)
 
   const staker = args[0];
+  console.log(staker);
+  
   const tx = contract.methods.updateStakingFor(staker)
 
   const options = {

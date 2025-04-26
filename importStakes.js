@@ -1,5 +1,5 @@
 import Web3 from 'web3';
-import ABI from './abis/MuonNodeStaking.json' assert { type: "json" };
+import ABI from './abis/MuonNodeStaking.json' with { type: "json" };
 import {promises as fs} from 'fs';
 import { parse } from 'csv-parse/sync';
 import 'dotenv/config';

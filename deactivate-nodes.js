@@ -1,9 +1,9 @@
 import Web3 from 'web3';
-import ABI from './abis/MuonNodeStaking.json' assert { type: "json" };
+import ABI from './abis/MuonNodeStaking.json' with { type: "json" };
 import 'dotenv/config';
 
 const RPC_URL = "https://endpoints.omniatech.io/v1/avax/mainnet/public"
-const MAX_GAS = "7000000"
+const MAX_GAS = "300000"
 
 const missingPrivateKey = () => {
   throw Error('PrivateKey missing')
@@ -28,6 +28,8 @@ const main = async () => {
 
   const staker = args[0];
   const tx = contract.methods.deactiveMuonNode(staker)
+
+  console.log(staker);
 
   const options = {
     to: contractAddr,
