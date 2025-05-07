@@ -1,23 +1,23 @@
 import Web3 from 'web3';
-import ABI from './abis/MuonNodeStaking.json' with { type: "json" };
+import ABI from './abis/MuonVestingManager.json' assert { type: "json" };
 import {promises as fs} from 'fs';
 import { parse } from 'csv-parse/sync';
 import 'dotenv/config';
 
 const RPC_URL = "https://endpoints.omniatech.io/v1/avax/mainnet/public"
 const MAX_GAS = "7000000"
-const FILE_NAME = "./data/stakes-v4.csv"
+const FILE_NAME = "./data/vestings.csv"
 
 const missingPrivateKey = () => {
   throw Error('PrivateKey missing')
 }
 
 const missingContractAddress = () => {
-  throw Error('MuonNodeStaking address missing')
+  throw Error('MuonVesting address missing')
 }
 
 const main = async () => {
-  const contractAddr = process.env.NODE_STAKING_ADDRESS || missingContractAddress()
+  const contractAddr = process.env.MUON_VESTING_ADDRESS || missingContractAddress()
   const privateKey = process.env.PRIVATE_KEY || missingPrivateKey()
 
   const web3 = new Web3(RPC_URL)
@@ -34,48 +34,29 @@ const main = async () => {
       to_line: parseInt(args[1]) 
   })
 
-  let users = []
+  let stakers = []
   let balances = []
-  let paidRewards = []
-  let paidRewardPerTokens = []
-  let pendingRewards = []
-  let tokenIds = []
-  let nodeAddresses = []
-  let peerIds = []
 
   records.map((row) => {
-    users.push(row[0])
+    stakers.push(row[0])
     balances.push(row[1])
-    paidRewards.push("0")
-    paidRewardPerTokens.push("0")
-    pendingRewards.push("0")
-    tokenIds.push(row[2])
-    nodeAddresses.push(row[3])
-    peerIds.push(row[4])
   })
 
   const contract = new web3.eth.Contract(ABI.abi, contractAddr)
-  const tx = contract.methods.migrate(
-    users,
-    balances,
-    paidRewards,
-    paidRewardPerTokens,
-    pendingRewards,
-    tokenIds,
-    nodeAddresses,
-    peerIds
+  const tx = contract.methods.bulkImport(
+    stakers, balances
   )
-
-  const options = {
+  let options = {
     to: contractAddr,
     data: tx.encodeABI(),
     gas: MAX_GAS,
     gasPrice: await web3.eth.getGasPrice(),
     nonce: await web3.eth.getTransactionCount(account.address)
   }
+
   const signed  = await web3.eth.accounts.signTransaction(options, privateKey)
   const receipt = await web3.eth.sendSignedTransaction(signed.rawTransaction)
-
+  
   console.log(receipt.transactionHash)
 }
 
