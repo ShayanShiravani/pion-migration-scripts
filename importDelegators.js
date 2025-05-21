@@ -6,7 +6,7 @@ import 'dotenv/config';
 
 const RPC_URL = "https://endpoints.omniatech.io/v1/avax/mainnet/public"
 const MAX_GAS = "7000000"
-const FILE_NAME = "./data/delegations-v4.csv"
+const FILE_NAME = "./data/delegations-v5.csv"
 
 const missingPrivateKey = () => {
   throw Error('PrivateKey missing')
